@@ -28,41 +28,34 @@ public class TaquinController implements ITaquinController {
      */
     @FXML
     private Label nbMoves;
+
     /**
      * La grille affichant les boutons permettant de jouer au Taquin.
      */
     @FXML
     private GridPane gridPane;
+
     /**
      * Les boutons représentant les tuiles du jeu du Taquin.
      */
     private Button[][] buttons;
+
     /**
      * Le modèle du Taquin avec lequel ce contrôleur interagit.
      */
     private Taquin taquin;
 
     /**
-     * Créé un objet de la classe TaquinController.
+     * Constructeur de la classe ITaquinController.
      */
     public TaquinController() {
     }
 
-    /**
-     * Modifie la façade du jeu du Taquin avec laquelle ce contrôleur interagit.
-     *
-     * @param taquin La façade du jeu du Taquin avec laquelle interagir.
-     */
     @Override
     public void setModel(Taquin taquin) {
         this.taquin = taquin;
     }
 
-    /**
-     * Initialise la grille du jeu.
-     *
-     * @param grid La grille du jeu.
-     */
     @Override
     public void initGrid(Grid grid) {
         buttons = new Button[grid.size()][grid.size()];
@@ -73,11 +66,6 @@ public class TaquinController implements ITaquinController {
         }
     }
 
-    /**
-     * Initialise les évènements des touches pressées.
-     *
-     * @param scene La scène qui écoutera les touches pressées.
-     */
     @Override
     public void initEvents(Scene scene) {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
@@ -91,27 +79,16 @@ public class TaquinController implements ITaquinController {
         });
     }
 
-    /**
-     * Met à jour l'affichage du nombre de déplacements.
-     *
-     * @param nbMoves Le nombre de déplacements.
-     */
     @Override
     public void initMoveLabel(IntegerProperty nbMoves) {
         this.nbMoves.textProperty().bind(nbMoves.asString());
     }
 
-    /**
-     * Prépare une nouvelle partie sur la vue.
-     */
     @Override
     public void startGame() {
         setButtonsDisable(false);
     }
 
-    /**
-     * Termine la partie en cours sur la vue.
-     */
     @Override
     public void endGame() {
         setButtonsDisable(true);
